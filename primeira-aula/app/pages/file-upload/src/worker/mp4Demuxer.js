@@ -42,13 +42,13 @@ export default class Mp4FDemuxer {
     }
 
     #onSamples(trackId, ref, samples) {
-        for (const sample of samples){
+        for(const sample of samples){
             this.#onChunk(new EncodedVideoChunk({
                 type: sample.is_sync ? "key" : "delta",
                 timestamp: 1e6 * sample.cts / sample.timescale,
                 duration: 1e6 * sample.duration / sample.timescale,
                 data: sample.data
-            }));
+            }))
         }
     }
 
@@ -89,6 +89,6 @@ export default class Mp4FDemuxer {
             }
         })
 
-        return stream.pipeTo(consumeFile)
+        return stream.pipeTo(consumeFile )
     }
 }

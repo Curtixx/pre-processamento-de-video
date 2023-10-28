@@ -15,8 +15,6 @@ worker.onmessage = ({ data }) => {
     if(data.status !== 'done') return
     clock.stop()
     view.updateElapsedTime(`Process took ${took.replace('ago', '')}`)
-    if(!data.buffers) return
-    view.donwloadBlobAsFile(data.buffers, data.filename)
 }
 
 view.configureOnFileChange(file => {
@@ -36,29 +34,29 @@ view.configureOnFileChange(file => {
 })
 
 //FUNÇÃO PARA SIMULAR O PROCESSO DE SELECIONAR UM VIDEO
-// async function fakeFetch() {
-//     const filePath = '/videos/frag_bunny.mp4'
+async function fakeFetch() {
+    const filePath = '/videos/frag_bunny.mp4'
 
-//     const res = await fetch(filePath)
-//     // TRAZ O TAMANHO DO ARQUIVO
-//     // const res = await fetch(filePath, {
-//     //     method: 'HEAD'
-//     // })
-//     // res.headers.get('content-length')
+    const res = await fetch(filePath)
+    // TRAZ O TAMANHO DO ARQUIVO
+    // const res = await fetch(filePath, {
+    //     method: 'HEAD'
+    // })
+    // res.headers.get('content-length')
 
-//     const file = new File([await res.blob()], filePath, {
-//         type: 'video/mp4',
-//         lastModified: Date.now()
-//     })
+    const file = new File([await res.blob()], filePath, {
+        type: 'video/mp4',
+        lastModified: Date.now()
+    })
 
-//     const event = new Event('change')
-//     Reflect.defineProperty(
-//         event,
-//         'target',
-//         {value: {files: [file]}}
-//     )
+    const event = new Event('change')
+    Reflect.defineProperty(
+        event,
+        'target',
+        {value: {files: [file]}}
+    )
 
-//     document.getElementById('fileUpload').dispatchEvent(event)
-// }
-// fakeFetch()
+    document.getElementById('fileUpload').dispatchEvent(event)
+}
+fakeFetch()
 

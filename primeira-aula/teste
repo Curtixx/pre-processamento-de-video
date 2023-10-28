@@ -1,0 +1,10 @@
+{
+    "timescale": 600,
+    "dts": 0,
+    "cts": 0,
+    "is_sync": true,
+    "degradation_priority": 0,
+    "offset": 2523,
+    "data": {},
+    "alreadyRead": 31115
+}
